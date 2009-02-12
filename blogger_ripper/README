@@ -1,0 +1,30 @@
+A totally hacked together and messy solution for extracting blog posts from blogger.com.
+
+## Requirements
+
+You are going to need:
+	- Python
+	- The Universal FeedParser (http://feedparser.org)
+	- Ruby
+
+
+## Using It
+	
+1. Download the atom export file from your blogger.com blog.
+2. Run the python script:
+
+		python blogger_ripper.py <your atom file>
+	
+   This script will spew a load of output onto STDOUT. It will also product a file called dat.txt (really dont ask why its doing all this)
+
+3. Run the ruby script:
+
+		ruby blogger_ripper.rb data.dat
+		
+   This script will produce 1 file per blog entry in the current directory.
+
+## Enhancements
+
+Yes this whole thing needs to be sorted out properly. Ideally there would just be one Python script, but I don't know Python and right now I am not so motivated in learning it.
+
+As these scripts are in the public domain, feel free to improve them (and lets face it, they need improvement).
