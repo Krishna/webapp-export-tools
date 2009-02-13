@@ -9,7 +9,7 @@ Usage: #{$0} <delicious xml export filename>
 
 Script to create a single CSV file containing all your bookmarks.
 
-1. Export the content of your delicious bookmarks to xml format
+1. Export the content of your delicious bookmarks to xml format (go here: https://api.del.icio.us/v1/posts/all)
 2. Run this script against the downloaded file.
 
 The script then writes to standard output, the boomkarks data in this CSV format:
