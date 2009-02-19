@@ -14,13 +14,14 @@ end
 
 def read_url(site_url, start, number)
   if site_url.index("http://") == nil
-    return "http://#{site_url}/api/read?filter=none&start=#{start}num=#{number}"
+    return "http://#{site_url}/api/read?filter=none&start=#{start}&num=#{number}"
   end
-  "#{site_url}/api/read?filter=none&start=#{start}num=#{number}"
+  "#{site_url}/api/read?filter=none&start=#{start}&num=#{number}"
 end
 
 def fetch_with_curl(url)
-  cmdLine = "curl \"#{url}\""
+  cmdLine = "curl -s \"#{url}\""
+  puts cmdLine
   `#{cmdLine}`  
 end
 
@@ -41,13 +42,14 @@ batches << remaining if remaining > 0
   
 #puts batches.inspect
 
+batches.each do |number|  
+  #puts "-- start:#{start} | number: #{number}"
 
-batches.each do |number|
-  # puts "-- start:#{start} | number: #{number}"
   url = read_url(site_url, start, number)
   xml = fetch_with_curl(url)
 
   feed = XmlSimple.xml_in(xml)
   TumblrPost.make_files_for_posts_from_xml(feed)
-  start += MAX_SUPPORTED_POSTS
+
+  start += MAX_SUPPORTED_POSTS + 1
 end

@@ -24,6 +24,13 @@ class TumblrPost
     res.join("\n")
   end
   
+  def make_from_audio(xmlHash)
+    # need to implement
+    @date = xmlHash['date-gmt']
+    @title = "Audio"
+    @content = ""
+  end
+  
   def make_from_quote(xmlHash)
     source = (xmlHash['quote-source']) ? xmlHash['quote-source'][0] : ""
     
@@ -43,7 +50,7 @@ class TumblrPost
     @title = "Photo"
     @content = xmlHash['photo-url'].collect {|h| "![](#{h['content']})" }.join("\n") 
     @content += "\n\n"
-    @content += xmlHash['photo-caption'][0]
+    @content += xmlHash['photo-caption'][0] if xmlHash['photo-caption']
   end  
   
   def make_from_link(xmlHash)
