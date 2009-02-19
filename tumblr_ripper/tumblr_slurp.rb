@@ -25,6 +25,12 @@ def fetch_with_curl(url)
   `#{cmdLine}`  
 end
 
+
+if ARGV.size != 3
+  STDERR.puts usage
+  exit
+end
+
 MAX_SUPPORTED_POSTS = 50
 
 site_url = ARGV[0]

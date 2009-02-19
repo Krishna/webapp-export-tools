@@ -42,7 +42,7 @@ class TumblrPost
   def make_from_regular(xmlHash)
     @date = xmlHash['date-gmt']
     @title = xmlHash['regular-title'][0]
-    @content = xmlHash['regular-body'][0] 
+    @content = xmlHash['regular-body'][0] if xmlHash['regular-body']
   end  
   
   def make_from_photo(xmlHash)
